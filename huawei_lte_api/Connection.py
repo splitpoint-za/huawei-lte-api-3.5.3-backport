@@ -10,7 +10,7 @@ from huawei_lte_api.api.User import UserSession, DEFAULT_USERNAME
 
 
 class Connection(Session):
-    user_session: Optional[UserSession] = None
+    user_session = None #: Optional[UserSession]
 
     def __init__(self,
                  url: str,

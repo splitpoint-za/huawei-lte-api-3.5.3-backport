@@ -1,4 +1,3 @@
-import dataclasses
 from collections import OrderedDict
 from typing import List, Optional, Iterable
 
@@ -8,20 +7,34 @@ from huawei_lte_api.enums.wlan import AuthModeEnum, WepEncryptModeEnum, WpaEncry
 from huawei_lte_api.Tools import Tools
 
 
-@dataclasses.dataclass
 class WLanSettings:
-    index: int
-    enabled: bool
-    ssid: str
-    mac: Optional[str]
-    broadcast: bool
-    auth_mode: str
-    id: Optional[str]
-    radius_key: Optional[str]
-    wpa_encryption_modes: str
-    wep_key_index: int
-    guest_off_time: int
-    is_guest_network: bool
+    def __init__(self,
+        index,#: int
+        enabled,#: bool
+        ssid,#: str
+        mac,#: Optional[str]
+        broadcast,#: bool
+        auth_mode,#: str
+        id,#: Optional[str]
+        radius_key,#: Optional[str]
+        wpa_encryption_modes,#: str
+        wep_key_index,#: int
+        guest_off_time,#: int
+        is_guest_network,#: bool
+    ):
+    
+        self.index = index
+        self.enabled = enabled
+        self.ssid = ssid
+        self.mac = mac
+        self.broadcast = broadcast
+        self.auth_mode = auth_mode
+        self.id = id
+        self.radius_key = radius_key
+        self.wpa_encryption_modes = wpa_encryption_modes
+        self.wep_key_index = wep_key_index
+        self.guest_off_time = guest_off_time
+        self.is_guest_network = is_guest_network
 
     @classmethod
     def from_dict(cls, data: dict) -> 'WLanSettings':

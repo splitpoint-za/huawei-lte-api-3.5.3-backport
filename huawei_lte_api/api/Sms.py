@@ -1,5 +1,4 @@
 import datetime
-import dataclasses
 import warnings
 from collections import OrderedDict
 from typing import Optional, List, Iterator
@@ -10,18 +9,30 @@ from huawei_lte_api.enums.sms import BoxTypeEnum, TextModeEnum, SaveModeEnum, Se
 from huawei_lte_api.Tools import Tools
 
 
-@dataclasses.dataclass
 class Message:
-    index: int  # Index in API
-    status: StatusEnum  # Status of SMS
-    phone: str  # Phone number of sender
-    content: str  # Text content of SMS
-    date_time: datetime.datetime  # Datetime of SMS send/receive
-    sca: Optional[str]  # Message center number in INTL format eg. +420603052000
-    save_type: SaveModeEnum  # How to save received SMS in device
-    priority: PriorityEnum  # What priority this SMS have
-    type: TypeEnum  # Type of SMS
-    text_mode: TextModeEnum = TextModeEnum.SEVEN_BIT  # Type of encoding of SMS
+    def __init__(
+                self,
+                index,         # Index in API,
+                status,              # Status of SMS
+                phone,                      # Phone number of sender
+                content,                     # Text content of SMS
+                date_time,    # Datetime of SMS send/receive
+                sca,              # Message center number in INTL format eg. +420603052000
+                save_type,         # How to save received SMS in device
+                priority,          # What priority this SMS have
+                typesms,                  # Type of SMS
+                text_mode = TextModeEnum.SEVEN_BIT): # Type of encoding of SMS
+    
+        self.index = index
+        self.status = status
+        self.phone = phone
+        self.content = content
+        self.date_time = datetime
+        self.sca = sca
+        self.save_type = save_type
+        self.priority = priority
+        self.type = typesms
+        self.text_mode = text_mode
 
     @classmethod
     def from_dict(cls, data: dict) -> 'Message':
